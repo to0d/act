@@ -23,7 +23,7 @@ if [ $# -eq 0 ]; then
     exit 1
 fi
 
-lt_type=cpp
+
 lt_action_list=0
 lt_action_make=0
 lt_action_run=0
@@ -66,7 +66,7 @@ if [ $lt_action_list == 1 ]; then
     for pt_dir in $test_dir_list
     {
         # query test
-        test_sh_list=$(ls $pt_dir | grep -e "^TA.*\.${lt_type}$")
+        test_sh_list=$(ls $pt_dir | grep -E "^TA.*\.(cpp|c)$")
         
         for pt_name in $test_sh_list
         {   pt_sh=$pt_dir/$pt_name    
@@ -82,7 +82,7 @@ if [ $lt_action_make == 1 ]; then
     for pt_dir in $test_dir_list
     {    
         # query test
-        test_sh_list=$(ls $pt_dir | grep -e "^TA.*\.${lt_type}$")
+        test_sh_list=$(ls $pt_dir | grep -E "^TA.*\.(cpp|c)$")
         if [ ! "$test_sh_list" = "" ]
         then
             cd $pt_dir
@@ -95,7 +95,7 @@ fi
 
 if [ $lt_action_run == 1 ]; then
 
-    out_file=$lt_type.out
+    out_file=al.out
 
     cd $workspace
 
@@ -108,7 +108,7 @@ if [ $lt_action_run == 1 ]; then
     for pt_dir in $test_dir_list
     {    
         # query test
-        test_sh_list=$(ls $pt_dir | grep -e "^TA.*\.${lt_type}$")
+        test_sh_list=$(ls $pt_dir | grep -E "^TA.*\.(cpp|c)$")
         if [ ! "$test_sh_list" = "" ]
         then
             pt_sh=$pt_dir/a.out
@@ -133,7 +133,7 @@ if [ $lt_action_clean == 1 ]; then
     for pt_dir in $test_dir_list
     {    
         # query test
-        test_sh_list=$(ls $pt_dir | grep -e "^TA.*\.${lt_type}$")
+        test_sh_list=$(ls $pt_dir | grep -E "^TA.*\.(cpp|c)$")
         if [ ! "$test_sh_list" = "" ]
         then
             cd $pt_dir
